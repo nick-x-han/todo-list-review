@@ -15,3 +15,5 @@ render(projects);
 
 //separate domcontroller that uses project and todos as source of truth to generate dom code
 //import a renderer
+
+//flow: create new todo, then use addTodo to add it to the project selected in dropdown
