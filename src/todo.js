@@ -1,8 +1,9 @@
 
 class ToDo {
-    complete = false;
+    completed = false;
 
     constructor(title, description, dueDate, priority, notes) {
+        this.id = crypto.randomUUID();
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -11,12 +12,10 @@ class ToDo {
     }
 
     toggleStatus() {
-        complete = !complete
+        this.completed = !this.completed;
     }
+    
 
-    changePriority() {
-
-    }
 }
 
 //make factory instead so closures?
