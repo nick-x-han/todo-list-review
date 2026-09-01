@@ -22,7 +22,7 @@ class Project {
     }
 
     getTodos() {
-        return this.#todos.map(todo => todo.id);
+        return this.#todos;
     }
 }
 
