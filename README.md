@@ -1,6 +1,6 @@
-# webpack-template-review
+# Todo List Review
 
-This is the template created by [this](https://www.theodinproject.com/lessons/node-path-javascript-revisiting-webpack) lesson of the Odin Project.
+This is a review of the todo list project of the Odin Project.
 
 ## Setup
 
