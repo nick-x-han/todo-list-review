@@ -24,10 +24,7 @@ function renderSidebar(projects, currentProjectIndex = 0) {
 }
 
 function renderTodos(project) {
-  contentDiv.textContent = "";
-  const projectHeader = document.createElement("h1");
-  projectHeader.textContent = project.name;
-  contentDiv.appendChild(projectHeader);
+  renderProjectHeader(project.name);
 
   project.todos.forEach((todo, index) => {
     const todoDisplay = displayTodo(todo);
@@ -41,6 +38,11 @@ function renderTodos(project) {
   contentDiv.appendChild(addTodoButton);
 }
 
-export { renderSidebar, renderTodos };
+function renderProjectHeader(name) {
+  contentDiv.textContent = "";
+  const projectHeader = document.createElement("h1");
+  projectHeader.textContent = name;
+  contentDiv.appendChild(projectHeader);
+}
 
-//continue: was wondering how to handle current project id and also how to display current proejct name immediatley instaed fo after a click
+export { renderSidebar };
