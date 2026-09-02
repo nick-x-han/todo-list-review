@@ -24,8 +24,9 @@ const sidebarDiv = document.querySelector("#sidebar");
   renderSidebar(projects, currentProjectIndex);
 
   sidebarDiv.addEventListener("click", (e) => {
-    if (e.target.tagName === "BUTTON") {
+    if (e.target.dataset.projectId) {
       currentProjectIndex = e.target.dataset.projectId;
+      sidebarDiv.textContent = "";
       renderSidebar(projects, currentProjectIndex);
     }
   });
