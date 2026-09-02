@@ -1,6 +1,7 @@
 import { Project } from "./project.js";
 
 const projects = [];
+let currentProjectIndex = 0;
 
 export function addProject(name) {
     const project = new Project(name);
@@ -9,6 +10,14 @@ export function addProject(name) {
 
 export function getProjects() {
     return projects;
+}
+
+export function getCurrentProject() {
+    return projects[currentProjectIndex];
+}
+
+export function setCurrentProjectIndex(index) {
+    currentProjectIndex = index; 
 }
 
 export function removeProject(project) {

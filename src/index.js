@@ -2,13 +2,12 @@ import { Project } from "./project.js";
 import "./styles.css";
 import { renderSidebar } from "./display.js";
 import { todoModal, projectModal } from "./modal.js";
-import { currentProjectIndex, addProject, getProjects } from "./projectManager.js";
+import { getCurrentProject, addProject, getProjects, setCurrentProjectIndex } from "./projectManager.js";
 
 const sidebarDiv = document.querySelector("#sidebar");
 
 (function () {
     addProject("Default");
-    let currentProjectIndex = 0;
 
     addProject("test");
     let a = {
@@ -18,28 +17,28 @@ const sidebarDiv = document.querySelector("#sidebar");
         priority: "high",
         notes: "x",
     };
-    getProjects()[currentProjectIndex].addTodo(a); ///
+    getCurrentProject().addTodo(a); ///
 
-    renderSidebar(currentProjectIndex);
+    renderSidebar();
 
     sidebarDiv.addEventListener("click", (e) => {
         if (e.target.dataset.projectId) {
-            currentProjectIndex = e.target.dataset.projectId;
+            setCurrentProjectIndex(e.target.dataset.projectId);
             sidebarDiv.textContent = "";
-            renderSidebar(currentProjectIndex);
+            renderSidebar();
         }
     });
 
     todoModal.modalElement.onsubmit = () => {
         const data = todoModal.getData();
-        getProjects()[currentProjectIndex].addTodo(data);
-        renderSidebar(currentProjectIndex);
+        getCurrentProject().addTodo(data);
+        renderSidebar();
     };
 
     projectModal.modalElement.onsubmit = () => {
         const newProject = new Project(projectModal.getName());
         getProjects().push(newProject);
-        renderSidebar(currentProjectIndex);
+        renderSidebar();
     };
 })();
 

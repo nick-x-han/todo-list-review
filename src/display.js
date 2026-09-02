@@ -1,12 +1,12 @@
 import { displayProject, displayTodo } from "./views.js";
 import { todoModal, projectModal } from "./modal.js";
-import { getProjects } from "./projectManager.js";
+import { getProjects, getCurrentProject } from "./projectManager.js";
 
 const sidebarDiv = document.querySelector("#sidebar");
 const contentDiv = document.querySelector("#content");
 
 //for the current call of renderSidebar, the project list and projectId values should always be the same since renderSidebar will trigger on new projects
-function renderSidebar(currentProjectIndex = 0) {
+function renderSidebar() {
     sidebarDiv.textContent = "";
     getProjects().forEach((p, index) => {
         const projectDisplay = displayProject(p, index);
@@ -15,7 +15,7 @@ function renderSidebar(currentProjectIndex = 0) {
     });
 
     renderAddProjectButton();
-    renderTodos(getProjects()[currentProjectIndex]);
+    renderTodos(getCurrentProject());
 }
 
 function renderTodos(project) {
@@ -58,3 +58,4 @@ function renderAddProjectButton() {
 export { renderSidebar };
 //double click to edit todo
 //figure out how to do deletion with views.js removebutton 
+//when deleting a project that is currentproject, it still is displayed. fix this. 

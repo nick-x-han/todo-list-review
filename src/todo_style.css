@@ -26,11 +26,15 @@ body {
     display: grid;
     grid-template-columns: 100px 1fr;
     gap: 3px;
+    padding: 0;
+    margin: 0;
 }
 
 #sidebar {
     display: grid;
-    background-color: white;
+    background-color: rgb(249, 242, 242);
+    grid-auto-rows: 100px;
+    height: 100vh;
 }
 
 .project {
@@ -40,6 +44,7 @@ body {
     color: black;
     width: 100px;
     height: 50px;
+    border-radius: 1em;
     text-overflow: ellipsis;
     &:hover {
         background-color: rgb(199, 186, 186);

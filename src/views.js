@@ -1,11 +1,16 @@
 import deleteIcon from "./assets/trash-can.svg";
 import "./todo_style.css";
-import { removeProject } from "./projectManager.js";
+import { getCurrentProject, removeProject, setCurrentProjectIndex } from "./projectManager.js";
 
 function displayProject(p) {
     const projectDiv = document.createElement("div");
     projectDiv.textContent = p.name;
-    const removeButton = displayRemoveButton(() => removeProject(p));
+    const removeButton = displayRemoveButton(() => {
+        removeProject(p);
+        if (p === getCurrentProject()) {
+            setCurrentProjectIndex(0);
+        }
+    });
 
     projectDiv.classList.add("project");
     projectDiv.append(removeButton);
