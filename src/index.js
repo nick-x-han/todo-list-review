@@ -8,10 +8,11 @@ const sidebarDiv = document.querySelector("#sidebar");
 (function () {
     const projects = [];
     const defaultProject = new Project("Default");
-    const testProject = new Project("test");
     let currentProjectIndex = 0;
 
     projects.push(defaultProject);
+
+    const testProject = new Project("test"); ///
     projects.push(testProject);
     let a = {
         title: "Pill",
@@ -20,7 +21,7 @@ const sidebarDiv = document.querySelector("#sidebar");
         priority: "high",
         notes: "x",
     };
-    projects[currentProjectIndex].addTodo(a);
+    projects[currentProjectIndex].addTodo(a); ///
 
     renderSidebar(projects, currentProjectIndex);
 
@@ -32,15 +33,13 @@ const sidebarDiv = document.querySelector("#sidebar");
         }
     });
 
-    const todoForm = todoModal.modalElement.querySelector("form");
-    todoForm.addEventListener("submit", () => {
+    todoModal.modalElement.addEventListener("submit", () => {
         const data = todoModal.getData();
         projects[currentProjectIndex].addTodo(data);
         renderSidebar(projects, currentProjectIndex);
     });
 
-    const projectForm = projectModal.modalElement.querySelector("form");
-    projectForm.addEventListener("submit", () => {
+    projectModal.modalElement.addEventListener("submit", () => {
         const newProject = new Project(projectModal.getName());
         projects.push(newProject);
         renderSidebar(projects, currentProjectIndex);
