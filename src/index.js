@@ -1,6 +1,5 @@
 import { Project } from "./project.js";
 import "./styles.css";
-import { ToDo } from "./todo.js";
 import { renderSidebar, renderTodos } from "./display.js";
 
 const projects = [];
@@ -8,7 +7,7 @@ const defaultProject = new Project("Default");
 let currentProject = 0;
 
 projects.push(defaultProject);
-let a = new ToDo("Pill", "Eat pill", "March 17", "high", "x");
+let a = {title: "Pill", description: "Eat pill", dueDate: "March 17", priority: "high", notes: "x"};
 projects[currentProject].addTodo(a);
 renderSidebar(projects);
 

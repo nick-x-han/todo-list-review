@@ -25,7 +25,7 @@ function renderSidebar(projects, id=0) {
 }
 
 function renderTodos(project) {
-    project.getTodos().forEach((todo, index) => {
+    project.todos.forEach((todo, index) => {
         const todoDisplay = displayTodo(todo);
         contentDiv.appendChild(todoDisplay);
     })

@@ -8,22 +8,23 @@ function displayTodo(todo) {
     const todoDiv = document.createElement("div");
     const todoTitle = document.createElement("h2");
     //should be display: none or something until event triggered
+    const expandDiv = document.createElement("div");
     const todoDescription = document.createElement("div");
     const todoDueDate = document.createElement("div");
-    const todoNotes = document.createElement("div");
 
     todoTitle.textContent = todo.title;
     todoDescription.textContent = todo.description;
     todoDueDate.textContent = todo.dueDate;
-    todoNotes.textContent = todo.notes;
 
     todoDiv.classList.add(todo.priority);
 
     if (todo.completed) {
         todoDiv.classList.add("completed");
     }
+    //will have other things like the dropdown for choosing project
+    expandDiv.appendChild(todoDescription);
 
-    todoDiv.append(todoTitle, todoDueDate, todoNotes);
+    todoDiv.append(todoTitle, todoDueDate, expandDiv);
     return todoDiv;
 }
 

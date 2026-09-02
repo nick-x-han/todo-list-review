@@ -1,7 +1,5 @@
-import { ToDo } from "./todo.js";
-
 class Project {
-    #todos = [];
+    todos = [];
 
     constructor(name = "Project") {
         this.name = name;
@@ -14,16 +12,31 @@ class Project {
     }
 
     removeTodo(todo) {
-        this.#todos.filter(t => t.id !== todo.id);
+        this.todos.filter(t => t.id !== todo.id);
     }
 
     addTodo(todo) {
-        this.#todos.push(todo);
+        let newTodo = new ToDo(todo);
+        this.todos.push(newTodo);
+    }
+}
+
+class ToDo {
+    completed = false;
+
+    constructor(todo) {
+        this.id = crypto.randomUUID();
+        this.title = todo.title;
+        this.description = todo.description;
+        this.dueDate = todo.dueDate;
+        this.priority = todo.priority;
     }
 
-    getTodos() {
-        return this.#todos;
+    toggleStatus() {
+        this.completed = !this.completed;
     }
+    
+
 }
 
 export { Project }
