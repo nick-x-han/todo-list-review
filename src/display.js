@@ -16,6 +16,7 @@ function renderSidebar(projects, currentProjectIndex = 0) {
   renderTodos(projects[currentProjectIndex]);
 
   //remove almost everything, just change currentprojindex and also call rendertodos? move to index? it calls rendersidebar instead....
+  //i guess move this to index.js
   sidebarDiv.addEventListener("click", (e) => {
     if (e.target.tagName === "BUTTON") {
       renderTodos(projects[e.target.dataset.projectId]);
