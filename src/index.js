@@ -1,35 +1,50 @@
 import { Project } from "./project.js";
 import "./styles.css";
 import { renderSidebar } from "./display.js";
+import { todoModal, projectModal } from "./modal.js";
 
 const sidebarDiv = document.querySelector("#sidebar");
 
 (function () {
-  const projects = [];
-  const defaultProject = new Project("Default");
-  const testProject = new Project("test");
-  let currentProjectIndex = 0;
+    const projects = [];
+    const defaultProject = new Project("Default");
+    const testProject = new Project("test");
+    let currentProjectIndex = 0;
 
-  projects.push(defaultProject);
-  projects.push(testProject);
-  let a = {
-    title: "Pill",
-    description: "Eat pill",
-    dueDate: "March 17",
-    priority: "high",
-    notes: "x",
-  };
-  projects[currentProjectIndex].addTodo(a);
+    projects.push(defaultProject);
+    projects.push(testProject);
+    let a = {
+        title: "Pill",
+        description: "Eat pill",
+        dueDate: "March 17",
+        priority: "high",
+        notes: "x",
+    };
+    projects[currentProjectIndex].addTodo(a);
 
-  renderSidebar(projects, currentProjectIndex);
+    renderSidebar(projects, currentProjectIndex);
 
-  sidebarDiv.addEventListener("click", (e) => {
-    if (e.target.dataset.projectId) {
-      currentProjectIndex = e.target.dataset.projectId;
-      sidebarDiv.textContent = "";
-      renderSidebar(projects, currentProjectIndex);
-    }
-  });
+    sidebarDiv.addEventListener("click", (e) => {
+        if (e.target.dataset.projectId) {
+            currentProjectIndex = e.target.dataset.projectId;
+            sidebarDiv.textContent = "";
+            renderSidebar(projects, currentProjectIndex);
+        }
+    });
+
+    const todoForm = todoModal.modalElement.querySelector("form");
+    todoForm.addEventListener("submit", () => {
+        const data = todoModal.getData();
+        projects[currentProjectIndex].addTodo(data);
+        renderSidebar(projects, currentProjectIndex);
+    });
+
+    const projectForm = projectModal.modalElement.querySelector("form");
+    projectForm.addEventListener("submit", () => {
+        const newProject = new Project(projectModal.getName());
+        projects.push(newProject);
+        renderSidebar(projects, currentProjectIndex);
+    });
 })();
 
 //flow: create new todo, then use addTodo to add it to the project by passing in the args
