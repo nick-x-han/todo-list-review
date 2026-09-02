@@ -19,6 +19,10 @@ function displayTodo(todo) {
 
     todoDiv.classList.add(todo.priority);
 
+    if (todo.completed) {
+        todoDiv.classList.add("completed");
+    }
+
     expandDiv.appendChild(todoDescription);
     expandDiv.appendChild(todoNotes);
 
