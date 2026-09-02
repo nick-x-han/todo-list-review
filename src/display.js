@@ -57,4 +57,6 @@ function renderAddProjectButton() {
 }
 
 export { renderSidebar };
-//continue: was thinkinh about imlement attach listener to buttons to add todo/proj
+//double click to edit todo
+//move index modal event listeners to modal.js and use onsubmit 
+//use modal js here

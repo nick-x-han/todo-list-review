@@ -29,4 +29,9 @@ function displayTodo(todo) {
     return todoDiv;
 }
 
+function generateRemoveButton() {
+    const removeButton = document.createElement("button");
+    removeButton
+}
+
 export { displayProject, displayTodo };
