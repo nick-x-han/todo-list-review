@@ -90,6 +90,9 @@ body {
         background: #dddddd;
         color: gray;
     }
+    &:hover {
+        background-color: rgb(244, 240, 240);
+    }
 }
 
 .todo-completed {

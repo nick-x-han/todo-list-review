@@ -1,5 +1,5 @@
 import deleteIcon from "./assets/trash-can.svg";
-import "./todo_style.css";
+import "./todo.css";
 import { getCurrentProject } from "./projectManager.js";
 
 function displayProject(p) {
@@ -48,6 +48,7 @@ function displayTodo(todo) {
     //will have other things like the dropdown for choosing project
     // actually with current + location this isn't possible
     expandDiv.appendChild(todoDescription);
+    expandDiv.style.display = "none";
 
     todoDiv.append(completedBox, todoTitle, todoDueDate, expandDiv);
     return todoDiv;

@@ -2,6 +2,7 @@ const body = document.querySelector("body");
 
 const todoModal = (function () {
     const modalElement = body.querySelector("dialog#add-todo-dialog");
+    const submitButton = body.querySelector("button[type='submit']");
     let titleElement = modalElement.querySelector("#title");
     let descriptionElement = modalElement.querySelector("textarea");
     let dueDateElement = modalElement.querySelector("#dueDate");

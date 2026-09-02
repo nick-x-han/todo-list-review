@@ -76,4 +76,4 @@ function onRemoveProject(project) {
 
 export { renderSidebar };
 //double click to edit todo
-//prevent deleting last project
+//event delgation on entire tododiv, any individual field can be edited with double click, drop down button for description

@@ -28,17 +28,19 @@ class ToDo {
 
     constructor(data) {
         this.id = crypto.randomUUID();
-        this.title = data.title;
-        this.description = data.description;
-        this.dueDate = data.dueDate;
-        this.priority = data.priority;
+        this.edit(data);
     }
 
     toggleStatus() {
         this.completed = !this.completed;
     }
     
-
+    edit(data) {
+        this.title = data.title;
+        this.description = data.description;
+        this.dueDate = data.dueDate;
+        this.priority = data.priority;
+    }
 }
 
 export { Project }
