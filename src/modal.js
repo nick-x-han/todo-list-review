@@ -2,11 +2,16 @@ const body = document.querySelector("body");
 
 const todoModal = (function () {
     const modalElement = body.querySelector("dialog#add-todo-dialog");
+    let titleElement = modalElement.querySelector("#title").value;
+    let descriptionElement = modalElement.querySelector("textarea").value;
+    let dueDateElement = modalElement.querySelector("#dueDate").value;
+    let priorityElement = modalElement.querySelector("#priority").value;
+
     const getData = function () {
-        let title = modalElement.querySelector("#title").value;
-        let description = modalElement.querySelector("textarea").value;
-        let dueDate = modalElement.querySelector("#dueDate").value;
-        let priority = modalElement.querySelector("#priority").value;
+        let title = titleElement.value;
+        let description = descriptionElement.value;
+        let dueDate = dueDateElement.value;
+        let priority = priorityElement.value;
 
         return { title, description, dueDate, priority };
     };
