@@ -30,12 +30,8 @@ function renderTodos(project) {
     const todoDisplay = displayTodo(todo);
     contentDiv.appendChild(todoDisplay);
   });
-  const addTodoButton = document.createElement("button");
-  addTodoButton.textContent = "+ Add To Do";
-  addTodoButton.command = "show-modal";
-  addTodoButton.commandForElement = modal;
 
-  contentDiv.appendChild(addTodoButton);
+  renderAddTodoButton();
 }
 
 function renderProjectHeader(name) {
@@ -43,6 +39,15 @@ function renderProjectHeader(name) {
   const projectHeader = document.createElement("h1");
   projectHeader.textContent = name;
   contentDiv.appendChild(projectHeader);
+}
+
+function renderAddTodoButton() {
+  const addTodoButton = document.createElement("button");
+  addTodoButton.textContent = "+ Add To Do";
+  addTodoButton.command = "show-modal";
+  addTodoButton.commandForElement = modal;
+
+  contentDiv.appendChild(addTodoButton);
 }
 
 export { renderSidebar };
