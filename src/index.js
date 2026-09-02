@@ -18,7 +18,7 @@ renderTodos(projects[currentProject]);
 
 
 
-//flow: create new todo, then use addTodo to add it to the project selected in dropdown
+//flow: create new todo, then use addTodo to add it to the project by passing in the args
 
 // SOME SHARED THING that uses composition to allwo both project and todo to easily get deleted (it auto adds the buttons and deletes its parent?)
 

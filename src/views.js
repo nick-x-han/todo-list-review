@@ -22,6 +22,7 @@ function displayTodo(todo) {
         todoDiv.classList.add("completed");
     }
     //will have other things like the dropdown for choosing project
+        // actually with current + location this isn't possible
     expandDiv.appendChild(todoDescription);
 
     todoDiv.append(todoTitle, todoDueDate, expandDiv);

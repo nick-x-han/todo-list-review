@@ -3,6 +3,7 @@ import { displayProject, displayTodo } from "./views.js";
 
 const sidebarDiv = document.querySelector("#sidebar");
 const contentDiv = document.querySelector("#content");
+const modal = document.querySelector("#add-todo-dialog");
 
 //for the current call of renderSidebar, the project list and projectId values should always be the same since renderSidebar will trigger on new projects
 function renderSidebar(projects, id=0) {
@@ -30,6 +31,9 @@ function renderTodos(project) {
     })
     const addTodoButton = document.createElement("button");
     addTodoButton.textContent = "+ Add To Do";
+    addTodoButton.command = "show-modal";
+    addTodoButton.commandForElement = modal;
+
     contentDiv.appendChild(addTodoButton);
 }
 
