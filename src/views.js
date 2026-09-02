@@ -1,10 +1,14 @@
-import deleteIcon from './assets/trash-can.svg'
-import './todo_style.css';
+import deleteIcon from "./assets/trash-can.svg";
+import "./todo_style.css";
 
 function displayProject(p) {
-  const projectButton = document.createElement("button");
-  projectButton.textContent = p.name;
-  return projectButton;
+    const projectDiv = document.createElement("div");
+    projectDiv.textContent = p.name;
+    const removeButton = displayRemoveButton();
+
+    projectDiv.classList.add("project");
+    projectDiv.append(removeButton);
+    return projectDiv;
 }
 
 function displayTodo(todo) {
@@ -21,26 +25,27 @@ function displayTodo(todo) {
     todoDueDate.textContent = todo.dueDate;
 
     todoDiv.classList.add(todo.priority);
+    todoDiv.classList.add("todo");
 
     if (todo.completed) {
         todoDiv.classList.add("completed");
     }
     //will have other things like the dropdown for choosing project
-        // actually with current + location this isn't possible
+    // actually with current + location this isn't possible
     expandDiv.appendChild(todoDescription);
 
-    todoDiv.append(todoTitle, todoDueDate, expandDiv, removeButton );
+    todoDiv.append(todoTitle, todoDueDate, expandDiv, removeButton);
     return todoDiv;
 }
 
-function displayRemoveButton() {
+function displayRemoveButton(objectToRemove) {
     const removeButton = document.createElement("img");
     removeButton.src = deleteIcon;
     removeButton.classList.add("icon");
-    
+
     removeButton.addEventListener("click", (e) => {
         removeButton.parentElement.remove();
-    })
+    });
     return removeButton;
 }
 

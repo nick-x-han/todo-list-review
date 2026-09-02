@@ -9,3 +9,41 @@
         background-color: orangered;
     }
 }
+
+.high {
+    border: 3px solid red;
+}
+
+.medium {
+    border: 2px solid yellow;
+}
+
+.low {
+    border: 1px solid green;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 3px;
+}
+
+#sidebar {
+    display: grid;
+    background-color: white;
+}
+
+.project {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: black;
+    text-overflow: ellipsis;
+    &:hover {
+        background-color: rgb(199, 186, 186);
+    }
+}
+
+.todo {
+
+}
