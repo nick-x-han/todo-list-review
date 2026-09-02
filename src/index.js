@@ -33,17 +33,17 @@ const sidebarDiv = document.querySelector("#sidebar");
         }
     });
 
-    todoModal.modalElement.addEventListener("submit", () => {
+    todoModal.modalElement.onsubmit = () => {
         const data = todoModal.getData();
         projects[currentProjectIndex].addTodo(data);
         renderSidebar(projects, currentProjectIndex);
-    });
+    };
 
-    projectModal.modalElement.addEventListener("submit", () => {
+    projectModal.modalElement.onsubmit = () => {
         const newProject = new Project(projectModal.getName());
         projects.push(newProject);
         renderSidebar(projects, currentProjectIndex);
-    });
+    };
 })();
 
 //flow: create new todo, then use addTodo to add it to the project by passing in the args

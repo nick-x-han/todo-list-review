@@ -1,10 +1,9 @@
 import { Project } from "./project.js";
 import { displayProject, displayTodo } from "./views.js";
+import { todoModal, projectModal } from "./modal.js";
 
 const sidebarDiv = document.querySelector("#sidebar");
 const contentDiv = document.querySelector("#content");
-const todoModal = document.querySelector("#add-todo-dialog");
-const projectModal = document.querySelector("#add-project-dialog");
 
 //for the current call of renderSidebar, the project list and projectId values should always be the same since renderSidebar will trigger on new projects
 function renderSidebar(projects, currentProjectIndex = 0) {
@@ -42,7 +41,7 @@ function renderAddTodoButton() {
     const addTodoButton = document.createElement("button");
     addTodoButton.textContent = "+ Add To Do";
     addTodoButton.command = "show-modal";
-    addTodoButton.commandForElement = todoModal;
+    addTodoButton.commandForElement = todoModal.modalElement;
 
     contentDiv.appendChild(addTodoButton);
 }
@@ -51,12 +50,11 @@ function renderAddProjectButton() {
     const addProjectButton = document.createElement("button");
     addProjectButton.textContent = "+ Add Project";
     addProjectButton.command = "show-modal";
-    addProjectButton.commandForElement = projectModal;
+    addProjectButton.commandForElement = projectModal.modalElement;
 
     sidebarDiv.appendChild(addProjectButton);
 }
 
 export { renderSidebar };
 //double click to edit todo
-//move index modal event listeners to modal.js and use onsubmit 
-//use modal js here
+//figure out how to do deletion with views.js removebutton 
