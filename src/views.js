@@ -23,10 +23,8 @@ function displayTodo(todo) {
         todoDiv.classList.add("completed");
     }
 
-    expandDiv.appendChild(todoDescription);
-    expandDiv.appendChild(todoNotes);
-
     todoDiv.append(todoTitle, todoDueDate, todoNotes);
+    return todoDiv;
 }
 
 export { displayProject, displayTodo };

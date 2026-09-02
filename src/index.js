@@ -8,7 +8,8 @@ const defaultProject = new Project("Default");
 let currentProject = 0;
 
 projects.push(defaultProject);
-
+let a = new ToDo("Pill", "Eat pill", "March 17", "high", "x");
+projects[currentProject].addTodo(a);
 renderSidebar(projects);
 
 
