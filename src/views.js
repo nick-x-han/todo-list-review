@@ -27,10 +27,15 @@ function displayTodo(todo) {
 
     completedBox.type = "checkbox";
     completedBox.name = "completed";
+    completedBox.checked = todo.completed;
+
     completedBox.addEventListener("change", () => {
         todoDiv.classList.toggle("todo-completed");
         todo.completed = !todo.completed;
     })
+    if (todo.completed) {
+        todoDiv.classList.add("todo-completed");
+    }
 
     todoTitle.textContent = todo.title;
     todoDescription.textContent = todo.description;
@@ -39,9 +44,7 @@ function displayTodo(todo) {
     todoDiv.classList.add(todo.priority);
     todoDiv.classList.add("todo");
 
-    if (todo.completed) {
-        todoDiv.classList.add("completed");
-    }
+
     //will have other things like the dropdown for choosing project
     // actually with current + location this isn't possible
     expandDiv.appendChild(todoDescription);

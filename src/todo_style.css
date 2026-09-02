@@ -1,7 +1,3 @@
-.completed {
-    text-decoration: line-through;
-}
-
 .icon {
     width: 30px;
     background-color: red;
@@ -98,6 +94,7 @@ body {
 
 .todo-completed {
     color: rgb(208, 200, 200);
+    /* text-decoration: line-through; */
 }
 
 #content {

@@ -2,10 +2,10 @@ const body = document.querySelector("body");
 
 const todoModal = (function () {
     const modalElement = body.querySelector("dialog#add-todo-dialog");
-    let titleElement = modalElement.querySelector("#title").value;
-    let descriptionElement = modalElement.querySelector("textarea").value;
-    let dueDateElement = modalElement.querySelector("#dueDate").value;
-    let priorityElement = modalElement.querySelector("#priority").value;
+    let titleElement = modalElement.querySelector("#title");
+    let descriptionElement = modalElement.querySelector("textarea");
+    let dueDateElement = modalElement.querySelector("#dueDate");
+    let priorityElement = modalElement.querySelector("#priority");
 
     const getData = function () {
         let title = titleElement.value;
