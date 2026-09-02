@@ -1,28 +1,28 @@
-import { Project } from "./project.js";
 import { displayProject, displayTodo } from "./views.js";
 import { todoModal, projectModal } from "./modal.js";
+import { getProjects } from "./projectManager.js";
 
 const sidebarDiv = document.querySelector("#sidebar");
 const contentDiv = document.querySelector("#content");
 
 //for the current call of renderSidebar, the project list and projectId values should always be the same since renderSidebar will trigger on new projects
-function renderSidebar(projects, currentProjectIndex = 0) {
+function renderSidebar(currentProjectIndex = 0) {
     sidebarDiv.textContent = "";
-    projects.forEach((p, index) => {
+    getProjects().forEach((p, index) => {
         const projectDisplay = displayProject(p, index);
         projectDisplay.dataset.projectId = index;
         sidebarDiv.appendChild(projectDisplay);
     });
 
     renderAddProjectButton();
-    renderTodos(projects[currentProjectIndex]);
+    renderTodos(getProjects()[currentProjectIndex]);
 }
 
 function renderTodos(project) {
     renderProjectHeader(project.name);
 
     project.todos.forEach((todo) => {
-        const todoDisplay = displayTodo(todo);
+        const todoDisplay = displayTodo(project, todo);
         contentDiv.appendChild(todoDisplay);
     });
 

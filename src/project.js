@@ -2,6 +2,7 @@ class Project {
     todos = [];
 
     constructor(name = "Project") {
+        this.id = crypto.randomUUID();
         this.name = name;
     }
 
@@ -12,7 +13,8 @@ class Project {
     }
 
     removeTodo(todo) {
-        this.todos.filter(t => t.id !== todo.id);
+        let removeIndex = this.todos.findIndex(t => t.id === todo.id);
+        this.todos.splice(removeIndex, 1);
     }
 
     addTodo(data) {

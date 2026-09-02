@@ -2,18 +2,15 @@ import { Project } from "./project.js";
 import "./styles.css";
 import { renderSidebar } from "./display.js";
 import { todoModal, projectModal } from "./modal.js";
+import { currentProjectIndex, addProject, getProjects } from "./projectManager.js";
 
 const sidebarDiv = document.querySelector("#sidebar");
 
 (function () {
-    const projects = [];
-    const defaultProject = new Project("Default");
+    addProject("Default");
     let currentProjectIndex = 0;
 
-    projects.push(defaultProject);
-
-    const testProject = new Project("test"); ///
-    projects.push(testProject);
+    addProject("test");
     let a = {
         title: "Pill",
         description: "Eat pill",
@@ -21,28 +18,28 @@ const sidebarDiv = document.querySelector("#sidebar");
         priority: "high",
         notes: "x",
     };
-    projects[currentProjectIndex].addTodo(a); ///
+    getProjects()[currentProjectIndex].addTodo(a); ///
 
-    renderSidebar(projects, currentProjectIndex);
+    renderSidebar(currentProjectIndex);
 
     sidebarDiv.addEventListener("click", (e) => {
         if (e.target.dataset.projectId) {
             currentProjectIndex = e.target.dataset.projectId;
             sidebarDiv.textContent = "";
-            renderSidebar(projects, currentProjectIndex);
+            renderSidebar(currentProjectIndex);
         }
     });
 
     todoModal.modalElement.onsubmit = () => {
         const data = todoModal.getData();
-        projects[currentProjectIndex].addTodo(data);
-        renderSidebar(projects, currentProjectIndex);
+        getProjects()[currentProjectIndex].addTodo(data);
+        renderSidebar(currentProjectIndex);
     };
 
     projectModal.modalElement.onsubmit = () => {
         const newProject = new Project(projectModal.getName());
-        projects.push(newProject);
-        renderSidebar(projects, currentProjectIndex);
+        getProjects().push(newProject);
+        renderSidebar(currentProjectIndex);
     };
 })();
 

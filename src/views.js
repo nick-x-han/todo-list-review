@@ -1,24 +1,25 @@
 import deleteIcon from "./assets/trash-can.svg";
 import "./todo_style.css";
+import { removeProject } from "./projectManager.js";
 
 function displayProject(p) {
     const projectDiv = document.createElement("div");
     projectDiv.textContent = p.name;
-    const removeButton = displayRemoveButton();
+    const removeButton = displayRemoveButton(() => removeProject(p));
 
     projectDiv.classList.add("project");
     projectDiv.append(removeButton);
     return projectDiv;
 }
 
-function displayTodo(todo) {
+function displayTodo(project, todo) {
     const todoDiv = document.createElement("div");
     const todoTitle = document.createElement("h2");
     //should be display: none or something until event triggered
     const expandDiv = document.createElement("div");
     const todoDescription = document.createElement("div");
     const todoDueDate = document.createElement("div");
-    const removeButton = displayRemoveButton();
+    const removeButton = displayRemoveButton(() => project.removeTodo(todo));
 
     todoTitle.textContent = todo.title;
     todoDescription.textContent = todo.description;
@@ -38,13 +39,14 @@ function displayTodo(todo) {
     return todoDiv;
 }
 
-function displayRemoveButton(objectToRemove) {
+function displayRemoveButton(removeFunction) {
     const removeButton = document.createElement("img");
     removeButton.src = deleteIcon;
     removeButton.classList.add("icon");
 
     removeButton.addEventListener("click", (e) => {
         removeButton.parentElement.remove();
+        removeFunction();
     });
     return removeButton;
 }
