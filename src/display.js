@@ -9,11 +9,13 @@ const contentDiv = document.querySelector("#content");
 //for the current call of renderSidebar, the project list and projectId values should always be the same since renderSidebar will trigger on new projects
 function renderSidebar() {
     sidebarDiv.textContent = "";
-    getProjects().forEach((p, index) => {
+    const projects = getProjects()
+    projects.forEach((p, index) => {
         const projectDisplay = displayProject(p, index);
         const removeButton = displayRemoveButton(() => onRemoveProject(p));
         projectDisplay.dataset.projectId = index;
-        projectDisplay.appendChild(removeButton);
+        if (projects.length > 1) 
+            projectDisplay.appendChild(removeButton);
         sidebarDiv.appendChild(projectDisplay);
     });
 
@@ -74,5 +76,4 @@ function onRemoveProject(project) {
 
 export { renderSidebar };
 //double click to edit todo
-//figure out how to do deletion with views.js removebutton
-//when deleting a project that is currentproject, it still is displayed. fix this.
+//prevent deleting last project
