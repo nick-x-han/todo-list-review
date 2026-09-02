@@ -1,6 +1,10 @@
 import deleteIcon from "./assets/trash-can.svg";
 import "./todo_style.css";
-import { getCurrentProject, removeProject, setCurrentProjectIndex } from "./projectManager.js";
+import {
+    getCurrentProject,
+    removeProject,
+    setCurrentProjectIndex,
+} from "./projectManager.js";
 
 function displayProject(p) {
     const projectDiv = document.createElement("div");
@@ -12,6 +16,12 @@ function displayProject(p) {
         }
     });
 
+    // To style current project on the sidebar
+    if (p === getCurrentProject()) {
+        projectDiv.classList.add("current-project");
+    } else {
+        projectDiv.classList.remove("current-project");
+    }
     projectDiv.classList.add("project");
     projectDiv.append(removeButton);
     return projectDiv;
