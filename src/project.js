@@ -15,8 +15,8 @@ class Project {
         this.todos.filter(t => t.id !== todo.id);
     }
 
-    addTodo(todo) {
-        let newTodo = new ToDo(todo);
+    addTodo(data) {
+        let newTodo = new ToDo(data);
         this.todos.push(newTodo);
     }
 }
@@ -24,12 +24,12 @@ class Project {
 class ToDo {
     completed = false;
 
-    constructor(todo) {
+    constructor(data) {
         this.id = crypto.randomUUID();
-        this.title = todo.title;
-        this.description = todo.description;
-        this.dueDate = todo.dueDate;
-        this.priority = todo.priority;
+        this.title = data.title;
+        this.description = data.description;
+        this.dueDate = data.dueDate;
+        this.priority = data.priority;
     }
 
     toggleStatus() {

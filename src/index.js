@@ -2,6 +2,9 @@ import { Project } from "./project.js";
 import "./styles.css";
 import { renderSidebar, renderTodos } from "./display.js";
 
+const sidebarDiv = document.querySelector("#sidebar");
+
+
 const projects = [];
 const defaultProject = new Project("Default");
 let currentProject = 0;
@@ -9,7 +12,10 @@ let currentProject = 0;
 projects.push(defaultProject);
 let a = {title: "Pill", description: "Eat pill", dueDate: "March 17", priority: "high", notes: "x"};
 projects[currentProject].addTodo(a);
+
 renderSidebar(projects);
+renderTodos(projects[currentProject]);
+
 
 
 //flow: create new todo, then use addTodo to add it to the project selected in dropdown
