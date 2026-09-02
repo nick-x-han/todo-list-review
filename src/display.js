@@ -1,6 +1,7 @@
-import { displayProject, displayTodo } from "./views.js";
+import { displayProject, displayRemoveButton, displayTodo } from "./views.js";
 import { todoModal, projectModal } from "./modal.js";
 import { getProjects, getCurrentProject } from "./projectManager.js";
+import { removeProject, setCurrentProjectIndex } from "./projectManager.js";
 
 const sidebarDiv = document.querySelector("#sidebar");
 const contentDiv = document.querySelector("#content");
@@ -10,7 +11,9 @@ function renderSidebar() {
     sidebarDiv.textContent = "";
     getProjects().forEach((p, index) => {
         const projectDisplay = displayProject(p, index);
+        const removeButton = displayRemoveButton(() => onRemoveProject(p));
         projectDisplay.dataset.projectId = index;
+        projectDisplay.appendChild(removeButton);
         sidebarDiv.appendChild(projectDisplay);
     });
 
@@ -22,7 +25,13 @@ function renderTodos(project) {
     renderProjectHeader(project.name);
 
     project.todos.forEach((todo) => {
-        const todoDisplay = displayTodo(project, todo);
+        const todoDisplay = displayTodo(todo);
+        const removeButton = displayRemoveButton(() => {
+            project.removeTodo(todo);
+            renderSidebar();
+        });
+        todoDisplay.appendChild(removeButton);
+
         contentDiv.appendChild(todoDisplay);
     });
 
@@ -55,7 +64,15 @@ function renderAddProjectButton() {
     sidebarDiv.appendChild(addProjectButton);
 }
 
+function onRemoveProject(project) {
+    removeProject(project);
+    if (!getCurrentProject()) {
+        setCurrentProjectIndex(0);
+    }
+    renderSidebar();
+}
+
 export { renderSidebar };
 //double click to edit todo
-//figure out how to do deletion with views.js removebutton 
-//when deleting a project that is currentproject, it still is displayed. fix this. 
+//figure out how to do deletion with views.js removebutton
+//when deleting a project that is currentproject, it still is displayed. fix this.

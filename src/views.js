@@ -1,20 +1,10 @@
 import deleteIcon from "./assets/trash-can.svg";
 import "./todo_style.css";
-import {
-    getCurrentProject,
-    removeProject,
-    setCurrentProjectIndex,
-} from "./projectManager.js";
+import { getCurrentProject } from "./projectManager.js";
 
 function displayProject(p) {
     const projectDiv = document.createElement("div");
     projectDiv.textContent = p.name;
-    const removeButton = displayRemoveButton(() => {
-        removeProject(p);
-        if (p === getCurrentProject()) {
-            setCurrentProjectIndex(0);
-        }
-    });
 
     // To style current project on the sidebar
     if (p === getCurrentProject()) {
@@ -23,18 +13,16 @@ function displayProject(p) {
         projectDiv.classList.remove("current-project");
     }
     projectDiv.classList.add("project");
-    projectDiv.append(removeButton);
     return projectDiv;
 }
 
-function displayTodo(project, todo) {
+function displayTodo(todo) {
     const todoDiv = document.createElement("div");
     const todoTitle = document.createElement("h2");
     //should be display: none or something until event triggered
     const expandDiv = document.createElement("div");
     const todoDescription = document.createElement("div");
     const todoDueDate = document.createElement("div");
-    const removeButton = displayRemoveButton(() => project.removeTodo(todo));
 
     todoTitle.textContent = todo.title;
     todoDescription.textContent = todo.description;
@@ -50,7 +38,7 @@ function displayTodo(project, todo) {
     // actually with current + location this isn't possible
     expandDiv.appendChild(todoDescription);
 
-    todoDiv.append(todoTitle, todoDueDate, expandDiv, removeButton);
+    todoDiv.append(todoTitle, todoDueDate, expandDiv);
     return todoDiv;
 }
 
@@ -60,10 +48,10 @@ function displayRemoveButton(removeFunction) {
     removeButton.classList.add("icon");
 
     removeButton.addEventListener("click", (e) => {
-        removeButton.parentElement.remove();
+        // removeButton.parentElement.remove();
         removeFunction();
     });
     return removeButton;
 }
 
-export { displayProject, displayTodo };
+export { displayProject, displayTodo, displayRemoveButton };
