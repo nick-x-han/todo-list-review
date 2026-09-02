@@ -38,7 +38,6 @@ body {
 
     & button {
         border-radius: 2em;
-        
     }
 }
 
@@ -60,21 +59,59 @@ body {
 }
 
 .todo {
-    
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    align-items: center;
 }
 
-/* #content {
-    display: grid;
-    grid-auto-rows: 100px;
-    align-items: start;
+.todo {
+    & input[type="checkbox"] {
+        appearance: none;
+        position: relative;
+        width: 2em;
+        height: 2em;
+        border: 1px solid gray;
+        border-radius: 50%;
+
+        color: orange;
+    }
+    & input[type="checkbox"]::before {
+        content: "⬤";
+        font-size: 2em;
+        position: absolute;
+        font-size: 1.2em;
+        left: 2.5px;
+        top: 2px;
+        visibility: hidden;
+    }
+
+    & input[type="checkbox"]:checked::before {
+        visibility: visible;
+    }
+
+    & input[type="checkbox"]:disabled {
+        border-color: black;
+        background: #dddddd;
+        color: gray;
+    }
+}
+
+.todo-completed {
+    color: rgb(208, 200, 200);
+}
+
+#content {
+    padding-left: 3em;
+    padding-right: 3em;
     & button {
         border: none;
         background-color: inherit;
-        font-size: 1rem;
+        font-size: 1.2rem;
+        color: gray;
 
         &:hover {
             color: red;
             background-color: rgb(199, 186, 186);
         }
     }
-} */
+}

@@ -23,6 +23,14 @@ function displayTodo(todo) {
     const expandDiv = document.createElement("div");
     const todoDescription = document.createElement("div");
     const todoDueDate = document.createElement("div");
+    const completedBox = document.createElement("input");
+
+    completedBox.type = "checkbox";
+    completedBox.name = "completed";
+    completedBox.addEventListener("change", () => {
+        todoDiv.classList.toggle("todo-completed");
+        todo.completed = !todo.completed;
+    })
 
     todoTitle.textContent = todo.title;
     todoDescription.textContent = todo.description;
@@ -38,7 +46,7 @@ function displayTodo(todo) {
     // actually with current + location this isn't possible
     expandDiv.appendChild(todoDescription);
 
-    todoDiv.append(todoTitle, todoDueDate, expandDiv);
+    todoDiv.append(completedBox, todoTitle, todoDueDate, expandDiv);
     return todoDiv;
 }
 
