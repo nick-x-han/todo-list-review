@@ -7,14 +7,13 @@ const sidebarDiv = document.querySelector("#sidebar");
 
 const projects = [];
 const defaultProject = new Project("Default");
-let currentProject = 0;
+let currentProjectIndex = 0;
 
 projects.push(defaultProject);
 let a = {title: "Pill", description: "Eat pill", dueDate: "March 17", priority: "high", notes: "x"};
-projects[currentProject].addTodo(a);
+projects[currentProjectIndex].addTodo(a);
 
-renderSidebar(projects);
-renderTodos(projects[currentProject]);
+renderSidebar(projects, currentProjectIndex);
 
 
 

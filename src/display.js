@@ -6,37 +6,40 @@ const contentDiv = document.querySelector("#content");
 const modal = document.querySelector("#add-todo-dialog");
 
 //for the current call of renderSidebar, the project list and projectId values should always be the same since renderSidebar will trigger on new projects
-function renderSidebar(projects, id=0) {
+function renderSidebar(projects, currentProjectIndex = 0) {
   projects.forEach((p, index) => {
     const projectDisplay = displayProject(p, index);
     projectDisplay.dataset.projectId = index;
     sidebarDiv.appendChild(projectDisplay);
   });
 
+  renderTodos(projects[currentProjectIndex]);
+
+  //remove almost everything, just change currentprojindex and also call rendertodos? move to index? it calls rendersidebar instead....
   sidebarDiv.addEventListener("click", (e) => {
-    if (e.target.tagName === 'BUTTON') {
-        contentDiv.textContent = "";
-        const projectHeader = document.createElement("h1");
-        projectHeader.textContent = projects[e.target.dataset.projectId].name;
-        contentDiv.appendChild(projectHeader);
-        renderTodos(projects[e.target.dataset.projectId]);
+    if (e.target.tagName === "BUTTON") {
+      renderTodos(projects[e.target.dataset.projectId]);
     }
-  })
+  });
 }
 
 function renderTodos(project) {
-    project.todos.forEach((todo, index) => {
-        const todoDisplay = displayTodo(todo);
-        contentDiv.appendChild(todoDisplay);
-    })
-    const addTodoButton = document.createElement("button");
-    addTodoButton.textContent = "+ Add To Do";
-    addTodoButton.command = "show-modal";
-    addTodoButton.commandForElement = modal;
+  contentDiv.textContent = "";
+  const projectHeader = document.createElement("h1");
+  projectHeader.textContent = project.name;
+  contentDiv.appendChild(projectHeader);
 
-    contentDiv.appendChild(addTodoButton);
+  project.todos.forEach((todo, index) => {
+    const todoDisplay = displayTodo(todo);
+    contentDiv.appendChild(todoDisplay);
+  });
+  const addTodoButton = document.createElement("button");
+  addTodoButton.textContent = "+ Add To Do";
+  addTodoButton.command = "show-modal";
+  addTodoButton.commandForElement = modal;
+
+  contentDiv.appendChild(addTodoButton);
 }
-
 
 export { renderSidebar, renderTodos };
 
