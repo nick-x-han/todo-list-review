@@ -7,6 +7,7 @@ const modal = document.querySelector("#add-todo-dialog");
 
 //for the current call of renderSidebar, the project list and projectId values should always be the same since renderSidebar will trigger on new projects
 function renderSidebar(projects, currentProjectIndex = 0) {
+  sidebarDiv.textContent = "";
   projects.forEach((p, index) => {
     const projectDisplay = displayProject(p, index);
     projectDisplay.dataset.projectId = index;
@@ -14,14 +15,6 @@ function renderSidebar(projects, currentProjectIndex = 0) {
   });
 
   renderTodos(projects[currentProjectIndex]);
-
-  //remove almost everything, just change currentprojindex and also call rendertodos? move to index? it calls rendersidebar instead....
-  //i guess move this to index.js
-  sidebarDiv.addEventListener("click", (e) => {
-    if (e.target.tagName === "BUTTON") {
-      renderTodos(projects[e.target.dataset.projectId]);
-    }
-  });
 }
 
 function renderTodos(project) {

@@ -7,9 +7,11 @@ const sidebarDiv = document.querySelector("#sidebar");
 (function () {
   const projects = [];
   const defaultProject = new Project("Default");
+  const testProject = new Project("test");
   let currentProjectIndex = 0;
 
   projects.push(defaultProject);
+  projects.push(testProject);
   let a = {
     title: "Pill",
     description: "Eat pill",
@@ -20,6 +22,13 @@ const sidebarDiv = document.querySelector("#sidebar");
   projects[currentProjectIndex].addTodo(a);
 
   renderSidebar(projects, currentProjectIndex);
+
+  sidebarDiv.addEventListener("click", (e) => {
+    if (e.target.tagName === "BUTTON") {
+      currentProjectIndex = e.target.dataset.projectId;
+      renderSidebar(projects, currentProjectIndex);
+    }
+  });
 })();
 
 //flow: create new todo, then use addTodo to add it to the project by passing in the args
