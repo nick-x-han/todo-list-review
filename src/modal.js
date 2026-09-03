@@ -45,7 +45,6 @@ const editTodoModal = (function () {
         titleElement.value = todo.title;
         descriptionElement.value = todo.description;
         dueDateElement.value = todo.dueDate;
-        console.log(dueDateElement.value);
         priorityElement.value = todo.priority;
     };
 
@@ -72,23 +71,5 @@ const projectModal = (function () {
 
     return { modalElement, getName };
 })();
-
-class FieldSwitch {
-    constructor(formInputType, inputType = false, displayElementType) {
-        this.formElement = document.createElement(formInputType);
-        if (inputType) formElement.type = inputType;
-        this.displayElement = document.createElement(displayElementType);
-
-        formElement.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                this.onConfirmEdit();
-            }
-        });
-    }
-
-    onConfirmEdit() {
-        displayElement.value = formElement.value;
-    }
-}
 
 export { addTodoModal, editTodoModal, projectModal };
