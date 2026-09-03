@@ -1,7 +1,13 @@
 import { Project } from "./project.js";
 
-const projects = [];
+let projects = []
+if (localStorage.getItem("projects"))
+    projects = JSON.parse(localStorage.getItem('projects'));
 let currentProjectIndex = 0;
+
+export function saveProjects() {
+    localStorage.setItem("projects", JSON.stringify(projects));
+}
 
 export function addProject(name) {
     const project = new Project(name);

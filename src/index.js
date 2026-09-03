@@ -7,9 +7,12 @@ import { getCurrentProject, addProject, getProjects, setCurrentProjectIndex } fr
 const sidebarDiv = document.querySelector("#sidebar");
 
 (function () {
-    addProject("Default");
+   
+    if (localStorage.length === 0)
+        addProject("Default");
 
     renderSidebar();
+     
 
     sidebarDiv.addEventListener("click", (e) => {
         if (e.target.dataset.projectId) {

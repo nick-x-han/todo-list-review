@@ -1,6 +1,6 @@
 import { displayProject, displayRemoveButton, displayTodo } from "./views.js";
 import { addTodoModal, projectModal } from "./modal.js";
-import { getProjects, getCurrentProject } from "./projectManager.js";
+import { getProjects, getCurrentProject, saveProjects } from "./projectManager.js";
 import { removeProject, setCurrentProjectIndex } from "./projectManager.js";
 
 const sidebarDiv = document.querySelector("#sidebar");
@@ -21,6 +21,8 @@ function renderSidebar() {
 
     renderAddProjectButton();
     renderTodos(getCurrentProject());
+
+    saveProjects();
 }
 
 function renderTodos(project) {
