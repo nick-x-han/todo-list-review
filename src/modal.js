@@ -1,4 +1,4 @@
-import { endOfToday, format, formatDistanceToNow } from "date-fns";
+import { format, startOfTomorrow } from "date-fns";
 
 const body = document.querySelector("body");
 
@@ -9,14 +9,13 @@ const addTodoModal = (function () {
     let dueDateElement = modalElement.querySelector("#dueDate");
     let priorityElement = modalElement.querySelector("#priority");
 
-    dueDateElement.defaultValue = format(endOfToday(), 'yyyy-MM-dd'); 
+    dueDateElement.defaultValue = format(startOfTomorrow(), 'yyyy-MM-dd'); 
 
     const getData = function () {
         let title = titleElement.value;
         let description = descriptionElement.value;
-        let dueDate = formatDistanceToNow(dueDateElement.value);
+        let dueDate = dueDateElement.value;
         let priority = priorityElement.value;
-
         return { title, description, dueDate, priority };
     };
 

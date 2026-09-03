@@ -2,6 +2,7 @@ import deleteIcon from "./assets/trash-can.svg";
 import "./todo.css";
 import { getCurrentProject } from "./projectManager.js";
 import { editTodoModal } from "./modal.js";
+import { formatDistanceToNow } from "date-fns";
 
 function displayProject(p) {
     const projectDiv = document.createElement("div");
@@ -40,7 +41,7 @@ function displayTodo(todo) {
 
     todoTitle.textContent = todo.title;
     todoDescription.textContent = todo.description;
-    todoDueDate.textContent = todo.dueDate;
+    todoDueDate.textContent = formatDistanceToNow(todo.dueDate);
 
     todoDiv.classList.add(todo.priority);
     todoDiv.classList.add("todo");

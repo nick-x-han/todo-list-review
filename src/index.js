@@ -9,16 +9,6 @@ const sidebarDiv = document.querySelector("#sidebar");
 (function () {
     addProject("Default");
 
-    addProject("test");
-    let a = {
-        title: "Pill",
-        description: "Eat pill",
-        dueDate: "March 17",
-        priority: "high",
-        notes: "x",
-    };
-    getCurrentProject().addTodo(a); ///
-
     renderSidebar();
 
     sidebarDiv.addEventListener("click", (e) => {
