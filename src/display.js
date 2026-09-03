@@ -1,5 +1,5 @@
 import { displayProject, displayRemoveButton, displayTodo } from "./views.js";
-import { todoModal, projectModal } from "./modal.js";
+import { addTodoModal, projectModal } from "./modal.js";
 import { getProjects, getCurrentProject } from "./projectManager.js";
 import { removeProject, setCurrentProjectIndex } from "./projectManager.js";
 
@@ -52,7 +52,7 @@ function renderAddTodoButton() {
     const addTodoButton = document.createElement("button");
     addTodoButton.textContent = "+ Add To Do";
     addTodoButton.command = "show-modal";
-    addTodoButton.commandForElement = todoModal.modalElement;
+    addTodoButton.commandForElement = addTodoModal.modalElement;
 
     contentDiv.appendChild(addTodoButton);
 }
@@ -75,5 +75,5 @@ function onRemoveProject(project) {
 }
 
 export { renderSidebar };
-//double click to edit todo
-//event delgation on entire tododiv, any individual field can be edited with double click, drop down button for description
+//single click to edit todo
+//event delgation on entire tododiv, any individual field can be edited with single click, drop down button for description

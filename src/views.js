@@ -1,6 +1,7 @@
 import deleteIcon from "./assets/trash-can.svg";
 import "./todo.css";
 import { getCurrentProject } from "./projectManager.js";
+import { editTodoModal } from "./modal.js";
 
 function displayProject(p) {
     const projectDiv = document.createElement("div");
@@ -44,6 +45,11 @@ function displayTodo(todo) {
     todoDiv.classList.add(todo.priority);
     todoDiv.classList.add("todo");
 
+    todoDiv.addEventListener("click", (e) => {
+        if (e.target.tagName !== "DIV") return;
+        editTodoModal.update(todo);
+        editTodoModal.modalElement.showModal();
+    })
 
     //will have other things like the dropdown for choosing project
     // actually with current + location this isn't possible

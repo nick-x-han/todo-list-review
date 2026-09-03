@@ -1,7 +1,7 @@
 import { Project } from "./project.js";
 import "./styles.css";
 import { renderSidebar } from "./display.js";
-import { todoModal, projectModal } from "./modal.js";
+import { addTodoModal, editTodoModal, projectModal } from "./modal.js";
 import { getCurrentProject, addProject, getProjects, setCurrentProjectIndex } from "./projectManager.js";
 
 const sidebarDiv = document.querySelector("#sidebar");
@@ -29,11 +29,17 @@ const sidebarDiv = document.querySelector("#sidebar");
         }
     });
 
-    todoModal.modalElement.onsubmit = () => {
-        const data = todoModal.getData();
+    addTodoModal.modalElement.onsubmit = () => {
+        const data = addTodoModal.getData();
         getCurrentProject().addTodo(data);
         renderSidebar();
     };
+
+    editTodoModal.modalElement.onsubmit = () => {
+        const data = editTodoModal.getData();
+        editTodoModal.getCurrentTodo().edit(data);
+        renderSidebar();
+    }
 
     projectModal.modalElement.onsubmit = () => {
         const newProject = new Project(projectModal.getName());
